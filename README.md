@@ -22,6 +22,8 @@ $ brew install ansible
 $ vagrant up
 $ vagrant package --output boxes/package-{version}.box
 ```
+> Bug exists in vagrant@1.7.1. @see https://github.com/mitchellh/vagrant/issues/4962
+
 https://atlas.hashicorp.com/iyu/boxes/ansible/versions/new
 
 ### Update
