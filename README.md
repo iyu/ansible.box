@@ -20,8 +20,7 @@ $ brew install ansible
 ### Basic
 ```sh
 $ vagrant up
-$ ansible-playbook -i inventory --ask-sudo-pass playbook.yml
-$ vagrant package
+$ vagrant package --output boxes/package-{version}.box
 ```
 https://atlas.hashicorp.com/iyu/boxes/ansible/versions/new
 
@@ -30,7 +29,6 @@ https://atlas.hashicorp.com/iyu/boxes/ansible/versions/new
 $ vagrant destroy
 $ vim playbook.yml # edit playbook.yml
 $ vagrant up
-$ ansible-playbook -i inventory --ask-sudo-pass playbook.yml
-$ vagrant package
+$ vagrant package --output boxes/package-{version}.box
 ```
 https://atlas.hashicorp.com/iyu/boxes/ansible/versions/new

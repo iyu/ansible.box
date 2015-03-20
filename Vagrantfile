@@ -8,6 +8,11 @@ Vagrant.configure(2) do |config|
 
   config.vm.define :node do |node|
     node.vm.network :private_network, ip: "192.168.33.10"
+    node.vm.provision :ansible do |ansible|
+      ansible.limit = "node"
+      ansible.inventory_path = "inventory"
+      ansible.playbook = "playbook.yml"
+    end
   end
 
 end
