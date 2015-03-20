@@ -1,0 +1,29 @@
+---
+- hosts: node
+  sudo: yes
+  tasks:
+  - name: Make empty sudogroup
+    file: path=/etc/sudoers.d/sudogroup state=touch mode="u=r,g=r"
+ 
+  - name: Install 'development tools'
+    yum: name="@Development tools" state=present
+  - name: Install 'development tools' related packages
+    yum: name={{ item }} state=present
+    with_items:
+    - zlib-devel
+    - bzip2-devel
+    - openssl-devel
+    - sqlite-devel
+    - readline-devel
+    - tk-devel
+ 
+  - name: Download Python 2.7
+    get_url: dest=/tmp url=http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tar.xz
+  - name: Ensure Python 2.7 is extracted
+    shell: chdir=/tmp tar xJf ./Python-2.7.6.tar.xz -C /tmp creates=/tmp/Python-2.7.6
+  - name: Ensure Python 2.7 is configured
+    shell: chdir=/tmp/Python-2.7.6 ./configure --prefix=/usr
+  - name: Ensure Python 2.7 make'd
+    shell: chdir=/tmp/Python-2.7.6 make
+  - name: Ensure Python 2.7 installed
+    shell: chdir=/tmp/Python-2.7.6 make altinstall
